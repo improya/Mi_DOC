@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Para mi doc ✨</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(circle at 20% 30%, #f1e8e6, #e6dcd8);
+            font-family: 'Inter', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 24px;
+            position: relative;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        body::before {
+            content: "";
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: radial-gradient(rgba(255, 200, 180, 0.15) 1px, transparent 1px);
+            background-size: 32px 32px;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .glass-container {
+            max-width: 620px;
+            width: 100%;
+            background: rgba(255, 250, 245, 0.68);
+            backdrop-filter: blur(16px);
+            border-radius: 56px;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            box-shadow: 0 30px 50px -20px rgba(0, 0, 0, 0.2), 0 0 0 0.5px rgba(255, 255, 255, 0.4) inset;
+            transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+            z-index: 20;
+            padding: 2rem 2rem 2.2rem;
+        }
+
+        .glass-container:hover {
+            transform: translateY(-4px);
+            background: rgba(255, 250, 245, 0.78);
+            box-shadow: 0 40px 60px -20px rgba(0, 0, 0, 0.25);
+        }
+
+        .content {
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background: rgba(230, 200, 190, 0.5);
+            backdrop-filter: blur(4px);
+            padding: 6px 18px;
+            border-radius: 100px;
+            font-size: 0.75rem;
+            font-weight: 500;
+            letter-spacing: 0.5px;
+            color: #7f4f4a;
+            margin-bottom: 1.5rem;
+            border: 0.5px solid rgba(255,255,240,0.7);
+            text-transform: uppercase;
+        }
+
+        .nombre-elegante {
+            font-size: 4.2rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #C75C5C, #A23B48, #DF8A6E);
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            margin: 0.25rem 0 0.5rem;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            text-shadow: 0 2px 5px rgba(0,0,0,0.02);
+        }
+
+        .separador {
+            width: 70px;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, #d99e8c, #c46b5a, #d99e8c, transparent);
+            margin: 1rem auto 1.2rem;
+            border-radius: 4px;
+        }
+
+        .mensaje-principal {
+            font-size: 1.25rem;
+            font-weight: 400;
+            line-height: 1.5;
+            color: #392d2a;
+            background: rgba(250, 240, 235, 0.7);
+            padding: 1rem 1.8rem;
+            border-radius: 48px;
+            margin: 1rem 0;
+            backdrop-filter: blur(4px);
+            font-weight: 500;
+        }
+
+        .quote-box {
+            background: rgba(255, 245, 240, 0.5);
+            border-radius: 36px;
+            padding: 1rem 1.5rem;
+            margin: 1.5rem 0;
+            border-left: 3px solid #e09b8a;
+            font-style: normal;
+            transition: all 0.3s ease;
+            min-height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .quote-text {
+            font-size: 1rem;
+            font-weight: 450;
+            color: #4a2f2a;
+            letter-spacing: -0.2px;
+            transition: opacity 0.3s ease;
+            line-height: 1.5;
+        }
+
+        .quote-author {
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 8px;
+            color: #aa7868;
+            font-weight: 400;
+        }
+
+        .btn-elegant {
+            background: rgba(30, 20, 18, 0.85);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 215, 200, 0.5);
+            padding: 14px 28px;
+            font-size: 1rem;
+            font-weight: 500;
+            border-radius: 60px;
+            color: #fff5ef;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Inter', sans-serif;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin: 0.5rem 0 0.8rem;
+            letter-spacing: 0.3px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+
+        .btn-elegant:hover {
+            background: #2f201c;
+            transform: scale(1.02);
+            border-color: rgba(255, 190, 160, 0.8);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+        }
+
+        .btn-elegant:active {
+            transform: scale(0.98);
+        }
+
+        .counter-elegant {
+            font-size: 0.8rem;
+            font-weight: 400;
+            color: #896b62;
+            margin-top: 1rem;
+            letter-spacing: 0.2px;
+            background: rgba(235, 220, 212, 0.4);
+            display: inline-block;
+            padding: 4px 16px;
+            border-radius: 30px;
+            backdrop-filter: blur(2px);
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 0.7rem;
+            font-weight: 400;
+            color: #ac8a7c;
+            opacity: 0.7;
+        }
+
+        .floating-particle {
+            position: fixed;
+            pointer-events: none;
+            z-index: 100;
+            font-size: 1.4rem;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+            animation: floatUpDown 1.2s ease-out forwards;
+        }
+
+        @keyframes floatUpDown {
+            0% {
+                transform: translateY(0) scale(0.6) rotate(0deg);
+                opacity: 0.9;
+            }
+            100% {
+                transform: translateY(120vh) scale(1.1) rotate(280deg);
+                opacity: 0;
+            }
+        }
+
+        .toast-sophisticated {
+            position: fixed;
+            bottom: 28px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: rgba(20, 15, 13, 0.8);
+            backdrop-filter: blur(16px);
+            color: #fce8df;
+            padding: 10px 24px;
+            border-radius: 60px;
+            font-weight: 450;
+            font-size: 0.85rem;
+            z-index: 200;
+            border: 1px solid rgba(255, 210, 180, 0.3);
+            font-family: monospace;
+            letter-spacing: 0.3px;
+            white-space: nowrap;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+            animation: fadeSlide 0.3s ease;
+        }
+
+        @keyframes fadeSlide {
+            from { opacity: 0; transform: translateX(-50%) translateY(20px);}
+            to { opacity: 1; transform: translateX(-50%) translateY(0);}
+        }
+
+        @media (max-width: 550px) {
+            .glass-container {
+                padding: 1.5rem;
+            }
+            .nombre-elegante {
+                font-size: 2.8rem;
+            }
+            .mensaje-principal {
+                font-size: 1rem;
+                padding: 0.8rem 1rem;
+            }
+            .floating-particle {
+                font-size: 1.2rem;
+            }
+            .quote-box {
+                min-height: 140px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="glass-container">
+    <div class="content">
+        <div class="badge">✨ un detalle para ti ✨</div>
+        <div class="nombre-elegante">mi doc</div>
+        <div class="separador"></div>
+        
+        <div class="mensaje-principal">
+            ♡ lo sencillo se vuelve especial cuando eres tú ♡
+        </div>
+        
+        <div class="quote-box" id="quoteDynamic">
+            <div class="quote-text" id="fraseElegante">✨ cargando palabras bonitas ✨</div>
+            <div class="quote-author">— para mi doc, infinitamente</div>
+        </div>
+        
+        <button class="btn-elegant" id="magicBtn">
+            <span>✦</span> hacer flotar sentimientos <span>✦</span>
+        </button>
+        
+        <div class="counter-elegant" id="elegantCounter">
+            ✧ 0 suspiros en el aire ✧
+        </div>
+        <footer>hecho con cariño para una personita muy especial para mi</footer>
+    </div>
+</div>
+
+<script>
+    (function() {
+        // ========== GENERADOR DE FRASES INFINITAS ==========
+        // Palabras y fragmentos para crear combinaciones únicas y bonitas
+        
+        const inicioFrases = [
+            "Me gustas", "Eres", "Tu sonrisa", "Tu mirada", "Tu forma de ser", 
+            "Contigo", "A tu lado", "Cuando pienso en ti", "Tu voz", "Tu esencia",
+            "Cada vez que te veo", "Lo que siento", "Tenerte cerca", "Saber que existes",
+            "El universo", "Mi día", "La vida", "El tiempo contigo", "Un segundo a tu lado"
+        ];
+        
+        const adjetivos = [
+            "especial", "única", "maravillosa", "inolvidable", "auténtica", 
+            "hermosa", "radiante", "extraordinaria", "increíble", "fascinante",
+            "mágica", "encantadora", "luminosa", "etérea", "sutil",
+            "profunda", "genuina", "sincera", "cautivadora", "soñada"
+        ];
+        
+        const verbos = [
+            "ilumina", "transforma", "embellece", "alegra", "calma", 
+            "inspira", "motiva", "enamora", "sorprende", "conmueve",
+            "abriga", "susurra", "despierta", "acompaña", "florece"
+        ];
+        
+        const sustantivos = [
+            "el alma", "el corazón", "mis días", "mi mundo", "cada rincón",
+            "la rutina", "el silencio", "la distancia", "el tiempo", "el espacio",
+            "mis pensamientos", "mis sueños", "cada instante", "la vida entera", "el aire"
+        ];
+        
+        const finalesBonitos = [
+            "sin explicación", "sin medida", "como nunca antes", "de mil maneras", "sin razón aparente",
+            "cada día más", "y no quiero que pare", "y eso lo es todo", "y me quedo en paz", "y es suficiente",
+            "y me hace bien", "y no cambiaría nada", "y se siente como hogar", "y me haces falta", "y me pierdo en ti"
+        ];
+        
+        const frasesCompletas = [
+            "Eres mi lugar favorito en medio del caos.",
+            "No sé qué somos, pero sé que me gustas muchísimo.",
+            "Tu existencia ya es un regalo para mis días.",
+            "Me haces bien sin siquiera intentarlo.",
+            "Contigo aprendí que lo bonito también puede ser sencillo.",
+            "A veces un 'casi' se siente más real que un 'siempre'.",
+            "Eres de esas personas que hacen que el mundo tenga sentido.",
+            "Me gustas de una manera que las palabras no pueden explicar.",
+            "Tu nombre se siente como una caricia cuando lo pronuncio.",
+            "Eres mi 'casi algo' favorito del universo entero.",
+            "Cada vez que me hablas, mi día mejora sin fallar.",
+            "No necesito definirlo, solo quiero seguir sintiéndote cerca.",
+            "Eres la razón por la que sonrío sin darme cuenta.",
+            "Me encanta cómo iluminas hasta mis días más grises.",
+            "Eres un sueño del que no quiero despertar."
+        ];
+        
+        // Generador de frases aleatorias infinitas
+        function generarFraseInfinita() {
+            // 70% probabilidad de generar combinación única, 30% de usar frases completas predefinidas
+            const random = Math.random();
+            
+            if (random < 0.3 && frasesCompletas.length > 0) {
+                return frasesCompletas[Math.floor(Math.random() * frasesCompletas.length)];
+            }
+            
+            // Generar combinación única
+            const tipo = Math.floor(Math.random() * 4);
+            
+            if (tipo === 0) {
+                // Estructura: [Inicio] + [adjetivo]
+                const inicio = inicioFrases[Math.floor(Math.random() * inicioFrases.length)];
+                const adj = adjetivos[Math.floor(Math.random() * adjetivos.length)];
+                return `${inicio} eres ${adj}.`;
+            } 
+            else if (tipo === 1) {
+                // Estructura: [Sujeto] + [verbo] + [sustantivo]
+                const sujeto = inicioFrases[Math.floor(Math.random() * inicioFrases.length)];
+                const verbo = verbos[Math.floor(Math.random() * verbos.length)];
+                const sust = sustantivos[Math.floor(Math.random() * sustantivos.length)];
+                return `${sujeto} ${verbo} ${sust}.`;
+            }
+            else if (tipo === 2) {
+                // Estructura: [Inicio] + [final bonito]
+                const inicio = inicioFrases[Math.floor(Math.random() * inicioFrases.length)];
+                const finalFB = finalesBonitos[Math.floor(Math.random() * finalesBonitos.length)];
+                return `${inicio} ${finalFB}.`;
+            }
+            else {
+                // Estructura: Frase con "tu" + [adjetivo/sustantivo] + [complemento]
+                const templates = [
+                    `Tu ${sustantivos[Math.floor(Math.random() * sustantivos.length)]} es ${adjetivos[Math.floor(Math.random() * adjetivos.length)]}.`,
+                    `Me encanta tu forma de ${verbos[Math.floor(Math.random() * verbos.length)]} ${sustantivos[Math.floor(Math.random() * sustantivos.length)]}.`,
+                    `Eres la razón por la que ${verbos[Math.floor(Math.random() * verbos.length)]} ${sustantivos[Math.floor(Math.random() * sustantivos.length)]}.`
+                ];
+                return templates[Math.floor(Math.random() * templates.length)];
+            }
+        }
+        
+        // Historial para evitar repeticiones cercanas
+        let ultimasFrases = [];
+        
+        function obtenerFraseUnica() {
+            let nuevaFrase = generarFraseInfinita();
+            // Evitar que se repita la misma frase en las últimas 8 veces
+            while (ultimasFrases.includes(nuevaFrase)) {
+                nuevaFrase = generarFraseInfinita();
+            }
+            ultimasFrases.push(nuevaFrase);
+            if (ultimasFrases.length > 10) {
+                ultimasFrases.shift();
+            }
+            return nuevaFrase;
+        }
+        
+        let particlesCount = 0;
+        const counterElement = document.getElementById('elegantCounter');
+        const quoteContainer = document.getElementById('fraseElegante');
+        const magicBtn = document.getElementById('magicBtn');
+        
+        function updateCounterUI() {
+            let text = "";
+            if(particlesCount === 0) text = "✧ 0 suspiros en el aire ✧";
+            else if(particlesCount === 1) text = "✧ 1 suspiro flotando para ti ✧";
+            else text = `✧ ${particlesCount} suspiros flotando para mi doc ✧`;
+            counterElement.innerHTML = text;
+            
+            if(particlesCount >= 50 && particlesCount < 100) {
+                counterElement.style.background = "rgba(220, 180, 160, 0.4)";
+                counterElement.style.color = "#653b32";
+            } else if(particlesCount >= 100) {
+                counterElement.style.background = "rgba(200, 140, 115, 0.4)";
+                counterElement.style.fontWeight = "500";
+            }
+        }
+        
+        function showToast(message, duration = 1600) {
+            const toast = document.createElement('div');
+            toast.className = 'toast-sophisticated';
+            toast.innerText = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transform = 'translateX(-50%) translateY(20px)';
+                setTimeout(() => toast.remove(), 300);
+            }, duration);
+        }
+        
+        function createParticle(x, y, isFromClick = false, forceX = null, forceY = null) {
+            const icons = ['🌸', '🌙', '✨', '💫', '🍂', '🌿', '🕊️', '💭', '🌹', '🎐', '🌸', '🍃', '🌟', '💖', '🌺', '⭐', '💕', '🌼'];
+            const randomIcon = icons[Math.floor(Math.random() * icons.length)];
+            const particle = document.createElement('div');
+            particle.className = 'floating-particle';
+            particle.innerText = randomIcon;
+            
+            let leftPos, topPos;
+            if (forceX !== null && forceY !== null) {
+                leftPos = Math.min(window.innerWidth - 40, Math.max(0, forceX + (Math.random() * 30 - 15)));
+                topPos = forceY - 10;
+                particle.style.top = topPos + 'px';
+                particle.style.left = leftPos + 'px';
+            } else {
+                leftPos = Math.random() * (window.innerWidth - 50);
+                particle.style.left = leftPos + 'px';
+                particle.style.top = '-20px';
+            }
+            
+            const size = 1 + Math.random() * 0.7;
+            particle.style.fontSize = (1.2 * size) + 'rem';
+            const duration = 4.5 + Math.random() * 3;
+            particle.style.animationDuration = duration + 's';
+            particle.style.opacity = 0.7 + Math.random() * 0.3;
+            document.body.appendChild(particle);
+            
+            setTimeout(() => {
+                if(particle && particle.remove) particle.remove();
+            }, duration * 1000);
+        }
+        
+        function rainParticles(amount, fromClick = false, clickX = null, clickY = null) {
+            for(let i = 0; i < amount; i++) {
+                setTimeout(() => {
+                    if(fromClick && clickX !== null && clickY !== null) {
+                        createParticle(clickX, clickY, true, clickX, clickY);
+                    } else {
+                        createParticle();
+                    }
+                }, i * 45);
+            }
+            particlesCount += amount;
+            updateCounterUI();
+            if(amount >= 18) showToast(`✧ ${amount} suspiros en el aire para ti, mi doc ✧`, 1400);
+            else showToast(`+${amount} detalles flotando`, 1000);
+            
+            if(particlesCount === 45) showToast("🌙 Oye, doc, eres hermosa, ¿lo sabías?", 1800);
+            if(particlesCount === 88) showToast("💫 esto es solo un reflejo de lo que me haces sentir", 2000);
+            if(particlesCount === 131) showToast("♡ casi algo, pero mi cariño es real", 2000);
+            if(particlesCount === 200) showToast("💖 200 suspiros... y sigo pensando en ti 💖", 2200);
+        }
+        
+        // Cambiar la frase cada 5 segundos con animación suave (frases infinitas)
+        let quoteInterval = setInterval(() => {
+            const nuevaFrase = obtenerFraseUnica();
+            quoteContainer.style.opacity = '0';
+            setTimeout(() => {
+                quoteContainer.innerText = `"${nuevaFrase}"`;
+                quoteContainer.style.opacity = '1';
+            }, 200);
+        }, 5500);
+        
+        magicBtn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const x = e.clientX;
+            const y = e.clientY;
+            rainParticles(24, true, x, y);
+            for(let i=0;i<8;i++) {
+                setTimeout(() => {
+                    const offX = x + (Math.random() * 80 - 40);
+                    const offY = y + (Math.random() * 40 - 20);
+                    createParticle(offX, offY, true, offX, offY);
+                }, i*20);
+            }
+            particlesCount += 8;
+            updateCounterUI();
+            
+            magicBtn.style.transform = 'scale(0.96)';
+            setTimeout(() => magicBtn.style.transform = '', 150);
+            const nombreSpan = document.querySelector('.nombre-elegante');
+            nombreSpan.style.transform = 'scale(1.02)';
+            setTimeout(() => nombreSpan.style.transform = '', 200);
+            
+            // Mostrar una frase especial al hacer clic
+            const fraseInstantanea = obtenerFraseUnica();
+            showToast(`💭 ${fraseInstantanea.substring(0, 40)}...`, 2000);
+        });
+        
+        document.body.addEventListener('click', (e) => {
+            if(e.target === magicBtn || magicBtn.contains(e.target)) return;
+            const amount = Math.floor(Math.random() * 7) + 4;
+            for(let i=0; i<amount; i++) {
+                setTimeout(() => {
+                    createParticle(e.clientX, e.clientY, true, e.clientX + (Math.random() * 40 - 20), e.clientY + (Math.random() * 20 - 10));
+                }, i * 25);
+            }
+            particlesCount += amount;
+            updateCounterUI();
+            if(Math.random() < 0.25) {
+                const fraseRapida = obtenerFraseUnica();
+                const msg = fraseRapida.length > 35 ? fraseRapida.substring(0, 32) + "..." : fraseRapida;
+                showToast(`🌸 ${msg}`, 1200);
+            }
+        });
+        
+        window.addEventListener('load', () => {
+            // Frase inicial
+            quoteContainer.innerText = `"${obtenerFraseUnica()}"`;
+            
+            setTimeout(() => {
+                for(let i=0;i<14;i++) {
+                    setTimeout(() => createParticle(), i * 70);
+                }
+                particlesCount += 14;
+                updateCounterUI();
+                showToast("✧ Hola, mi doc. Esto es para ti, infinitamente ✧", 2500);
+            }, 400);
+            
+            const container = document.querySelector('.glass-container');
+            let hoverTimer;
+            container.addEventListener('mousemove', (e) => {
+                if(hoverTimer) clearTimeout(hoverTimer);
+                hoverTimer = setTimeout(() => {
+                    if(Math.random() < 0.35) {
+                        const x = e.clientX;
+                        const y = e.clientY;
+                        createParticle(x, y, true, x, y);
+                        particlesCount++;
+                        updateCounterUI();
+                    }
+                }, 50);
+            });
+        });
+        
+        const glassCard = document.querySelector('.glass-container');
+        glassCard.addEventListener('touchmove', (e) => {
+            e.preventDefault();
+            const touch = e.touches[0];
+            if(touch) {
+                createParticle(touch.clientX, touch.clientY, true, touch.clientX, touch.clientY);
+                particlesCount++;
+                updateCounterUI();
+            }
+        });
+        
+        glassCard.addEventListener('touchstart', (e) => {
+            const touch = e.touches[0];
+            if(touch) {
+                for(let i=0;i<3;i++) {
+                    setTimeout(() => {
+                        createParticle(touch.clientX, touch.clientY, true, touch.clientX + (Math.random()*20-10), touch.clientY);
+                    }, i*30);
+                }
+                particlesCount+=3;
+                updateCounterUI();
+            }
+        });
+        
+        window.addEventListener('beforeunload', () => {
+            if(quoteInterval) clearInterval(quoteInterval);
+        });
+        
+        console.log("%c✨ Frases infinitas de amor → para mi doc ✨", "color:#be7c68; font-size:14px; font-weight:600;");
+    })();
+</script>
+</body>
+</html>
